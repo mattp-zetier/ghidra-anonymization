@@ -25,8 +25,9 @@ When files are uploaded to a Ghidra server, they retain metadata including local
 These scripts are designed to run within Ghidra's script environment:
 
 1. Open your Ghidra project
-2. Navigate to **Window → Script Manager**
-3. Run the desired script from the Scripts menu
+2. Navigate to **Window -> Script Manager**
+3. Add this repository to the script sources
+4. Run the desired script from the Scripts menu
 
 ### Cloning this repository
 
@@ -35,20 +36,16 @@ These scripts are designed to run within Ghidra's script environment:
 
 ### Example Workflows from UI
 
-**Anonymize a single file:**
+**Anonymize file metadata in a single file or entire repository:**
 ```
-Scripts → anonymizeFile
-```
-
-**Anonymize entire repository:**
-```
-Scripts → anonymizeFiles
+Scripts -> anonymizeFile
+Scripts -> anonymizeFiles
 ```
 
 **Anonymize usernames in program history (requires Ghidra fork):**
 ```
-Scripts → anonymizeCommentHistory
-Scripts → anonymizeLabelHistory
+Scripts -> anonymizeCommentHistory
+Scripts -> anonymizeLabelHistory
 ```
 
 ### Scripting with anonymization APIs
