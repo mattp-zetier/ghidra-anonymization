@@ -1,4 +1,4 @@
-# Ghidra Anonymization Scripts
+# Ghidra Anonymization
 
 A collection of Python scripts for anonymizing metadata in Ghidra server repositories, designed to remove identifying information from binary analysis projects.
 
@@ -33,7 +33,7 @@ These scripts are designed to run within Ghidra's script environment:
 - **Without our Ghidra fork** - Clone as normal
 - **With our Ghidra fork** - Use `git clone --recursive` if cloning fresh, or `git submodule update --init` if previously cloned without the `--recursive` flag
 
-### Example Workflows
+### Example Workflows from UI
 
 **Anonymize a single file:**
 ```
@@ -45,14 +45,30 @@ Scripts → anonymizeFile
 Scripts → anonymizeFiles
 ```
 
-**Anonymize user history:**
+**Anonymize usernames in program history (requires Ghidra fork):**
 ```
 Scripts → anonymizeCommentHistory
 Scripts → anonymizeLabelHistory
 ```
 
-## Requirements
+### Scripting with anonymization APIs
 
-- Ghidra (with Python scripting support)
-- Active Ghidra server connection (for multi-file operations)
+```
+# Anonymize current program's label history
+currentProgram.getSymbolTable().anonymizeLabelHistory("Anonymous")
+
+# Anonymize label history at a specific address
+currentProgram.getSymbolTable().anonymizeLabelHistory("Anonymous", toAddr(0x20000))
+
+# Anonymize current program's comment history
+currentProgram.getListing().anonymizeCommentHistory("Anonymous")
+
+# Anonymize comment history at a specific address
+currentProgram.getListing().anonymizeCommentHistory("Anonymous", toAddr(0x20000))
+```
+
+## Future work
+
+We've submitted a pull request to Ghidra that includes our history anonymization API, and are looking forward to working with the devs to get it implemented.
+
 
